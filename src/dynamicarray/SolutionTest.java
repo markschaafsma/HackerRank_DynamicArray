@@ -28,7 +28,7 @@ class SolutionTest {
 
 	@Test
 	void test0() {
- 		//   Input
+        //   Input
         //     2 5
         //     1 0 5
         //     1 1 7
@@ -67,42 +67,42 @@ class SolutionTest {
         //       seq0 = [5,3]
         //       seq1 = [7]
 		
-		// Input
+        // Input
 		
-		// Define the number of sequences
-		Integer n = 2;
-		// Define the number of queries
-		Integer q = 5;
-		// Create the query list
+        // Define the number of sequences
+        Integer n = 2;
+        // Define the number of queries
+        Integer q = 5;
+        // Create the query list
         List<List<Integer>> queries = new ArrayList<>();
         // Create query 0 and add to the query list
-   		String q0 = "1 0 5";
-   		queries.add(Stream.of(q0.split(" ")).map(Integer::parseInt).collect(toList()));
-   		// Create query 1 and add to the query list
-   		String q1 = "1 1 7";
-   		queries.add(Stream.of(q1.split(" ")).map(Integer::parseInt).collect(toList()));
-   		// Create query 2 and add to the query list
-   		String q2 = "1 0 3";
-   		queries.add(Stream.of(q2.split(" ")).map(Integer::parseInt).collect(toList()));
-   		// Create query 3 and add to the query list
-   		String q3 = "2 1 0";
-   		queries.add(Stream.of(q3.split(" ")).map(Integer::parseInt).collect(toList()));
-   		// Create query 4 and add to the query list
-   		String q4 = "2 1 1";
+        String q0 = "1 0 5";
+        queries.add(Stream.of(q0.split(" ")).map(Integer::parseInt).collect(toList()));
+        // Create query 1 and add to the query list
+        String q1 = "1 1 7";
+        queries.add(Stream.of(q1.split(" ")).map(Integer::parseInt).collect(toList()));
+        // Create query 2 and add to the query list
+        String q2 = "1 0 3";
+        queries.add(Stream.of(q2.split(" ")).map(Integer::parseInt).collect(toList()));
+        // Create query 3 and add to the query list
+        String q3 = "2 1 0";
+        queries.add(Stream.of(q3.split(" ")).map(Integer::parseInt).collect(toList()));
+        // Create query 4 and add to the query list
+        String q4 = "2 1 1";
         queries.add(Stream.of(q4.split(" ")).map(Integer::parseInt).collect(toList()));
         
         // Display input queries
         //for (List l : queries) {
-        //	System.out.println(l);
+        //    System.out.println(l);
         //}
         
-		// Expected result
-    	List<Integer> result = new ArrayList<>();
-    	result.add(7);
-    	result.add(3);
+        // Expected result
+        List<Integer> result = new ArrayList<>();
+        result.add(7);
+        result.add(3);
 
-    	// Run the Test
- 		assertEquals(Solution.dynamicArray(n, queries),result);
-	}
+        // Run the Test
+        assertEquals(Solution.dynamicArray(n, queries),result);
+    }
 	
 }

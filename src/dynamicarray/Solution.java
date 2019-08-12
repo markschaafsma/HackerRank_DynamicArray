@@ -53,85 +53,85 @@ import static java.util.stream.Collectors.toList;
 
 public class Solution {
 
-    // Complete the dynamicArray function below.
-    static List<Integer> dynamicArray(int n, List<List<Integer>> queries) {
-    	
-    	//  Create the list, 'seqList', of n empty sequences.
-    	List<List<Integer>> seqList = new ArrayList<>(n);
-    	
-    	// Create the initial list, 'seq', for each element in 'seqList'.
-    	for (int i = 0; i < n; i++) {
-    		List<Integer> seq = new ArrayList<>();
-    		seqList.add(seq);
-    	}
-    	
-    	// Keep track of the lastAnswer
-    	int lastAnswer = 0;
-    	
-    	// Keep track of the results
-    	List<Integer> result = new ArrayList<>();
+	// Complete the dynamicArray function below.
+	static List<Integer> dynamicArray(int n, List<List<Integer>> queries) {
 
-    	//Process queries
-    	for (int i = 0; i < queries.size(); i++) {
-    		// Get the query
-    		List<Integer> query = queries.get(i);
-    		// Find the seq row to process from the seqList
-    		// (using the bitwise XOR and remainder operators)
-    		int seq = ((query.get(1) ^ lastAnswer) % n);
-    		// Check if query type 1
-    		if (query.get(0) == 1) {
-    			// Append integer (index=2) to the seq row (ArrayList)
-    			seqList.get(seq).add(query.get(2));
-    		}
-    		// Check if query type 2
-    		if (query.get(0) == 2) {
-    			// Find the integer value of element ((index=2) % size) in the seq row
-    			int element = query.get(2) % seqList.get(seq).size();
-    			lastAnswer = seqList.get(seq).get(element);
-    			System.out.println(lastAnswer);
-    			result.add(lastAnswer); 
-    		}
-    	}
+		//  Create the list, 'seqList', of n empty sequences.
+		List<List<Integer>> seqList = new ArrayList<>(n);
     	
-    	return result; 
-    }
+		// Create the initial list, 'seq', for each element in 'seqList'.
+		for (int i = 0; i < n; i++) {
+			List<Integer> seq = new ArrayList<>();
+			seqList.add(seq);
+		}
+    	
+		// Keep track of the lastAnswer
+		int lastAnswer = 0;
+    	
+		// Keep track of the results
+		List<Integer> result = new ArrayList<>();
+
+		//Process queries
+		for (int i = 0; i < queries.size(); i++) {
+			// Get the query
+			List<Integer> query = queries.get(i);
+			// Find the seq row to process from the seqList
+			// (using the bitwise XOR and remainder operators)
+			int seq = ((query.get(1) ^ lastAnswer) % n);
+			// Check if query type 1
+			if (query.get(0) == 1) {
+				// Append integer (index=2) to the seq row (ArrayList)
+				seqList.get(seq).add(query.get(2));
+			}
+			// Check if query type 2
+			if (query.get(0) == 2) {
+				// Find the integer value of element ((index=2) % size) in the seq row
+				int element = query.get(2) % seqList.get(seq).size();
+				lastAnswer = seqList.get(seq).get(element);
+				System.out.println(lastAnswer);
+				result.add(lastAnswer); 
+			}
+		}
+    	
+		return result; 
+	}
     
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-//      BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-	    BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("result.txt"));
+	public static void main(String[] args) throws IOException {
+		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+//		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("result.txt"));
 
-        String[] nq = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+		String[] nq = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
 
-        int n = Integer.parseInt(nq[0]);
+		int n = Integer.parseInt(nq[0]);
 
-        int q = Integer.parseInt(nq[1]);
+		int q = Integer.parseInt(nq[1]);
 
-        List<List<Integer>> queries = new ArrayList<>();
+		List<List<Integer>> queries = new ArrayList<>();
 
-        IntStream.range(0, q).forEach(i -> {
-            try {
-                queries.add(
-                    Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-                        .map(Integer::parseInt)
-                        .collect(toList())
-                );
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+		IntStream.range(0, q).forEach(i -> {
+			try {
+				queries.add(
+					Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+						.map(Integer::parseInt)
+						.collect(toList())
+				);
+			} catch (IOException ex) {
+				throw new RuntimeException(ex);
+			}
+		});
 
-        List<Integer> result = dynamicArray(n, queries);
+		List<Integer> result = dynamicArray(n, queries);
 
-        bufferedWriter.write(
-            result.stream()
-                .map(Object::toString)
-                .collect(joining("\n"))
-            + "\n"
-        );
+		bufferedWriter.write(
+			result.stream()
+				.map(Object::toString)
+				.collect(joining("\n"))
+			+ "\n"
+		);
 
-        bufferedReader.close();
-        bufferedWriter.close();
-    }
+		bufferedReader.close();
+		bufferedWriter.close();
+	}
 }
