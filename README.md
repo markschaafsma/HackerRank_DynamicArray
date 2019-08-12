@@ -53,13 +53,39 @@ For each type 2 query, print the updated value of lastAnswer on a new line.
 ### Testcases
 
    - Testcase 0
-	    - Input
-	      -  2 5
-		    -  1 0 5
-		    -  1 1 7
-		    -  1 0 3
-		    -  2 1 0
-		    -  2 1 1
-	    - Expected Output
-	      -  7
-		    -  3
+     - Input
+       -  2 5
+       -  1 0 5
+       -  1 1 7
+       -  1 0 3
+       -  2 1 0
+       -  2 1 1
+     - Expected Output
+       -  7
+       -  3
+     - Explanation
+       - Initial Values:
+         - N = 2
+         - lastAnswer = 0
+         - seq0 = []
+         - seq1 = []
+       -  Query 0: Append 5 to sequence ((0 XOR 0) % 2) = 0.
+          - lastAnswer = 0
+          - seq0 = [5]
+          - seq1 = []
+        - Query 1: Append 7 to sequence ((1 XOR 0) % 2) = 1.
+          - lastAnswer = 0
+          - seq0 = [5]
+          - seq1 = [7]
+        - Query 2: Append 3 to sequence ((0 XOR 0) % 2) = 0.
+          - lastAnswer = 0
+          - seq0 = [5,3]
+          - seq1 = [7]
+        - Query 3: Assign the value at index 0 of sequence ((1 XOR 0) % 2) = 1 to lastAnswer, print lastAnswer.
+          - lastAnswer = 7
+          - seq0 = [5,3]
+          - seq1 = [7]
+        - Query 4: Assign the value at index 1 of sequence ((1 XOR 7) % 2) = 0 to lastAnswer, print lastAnswer.
+          - lastAnswer = 3
+          - seq0 = [5,3]
+          - seq1 = [7]
